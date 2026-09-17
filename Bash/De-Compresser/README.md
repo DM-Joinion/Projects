@@ -3,7 +3,5 @@ This Script is on making...
 --- 
 
 **To Do**:
-- Finish Compressed function
-    Change unsuported
-    Manage output  
+- Add report for Compress and Decompress functions
 - Add error managing on each function

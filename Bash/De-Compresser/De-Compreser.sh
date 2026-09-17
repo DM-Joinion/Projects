@@ -30,13 +30,17 @@ function compress() {
         number=$n_comp
         echo -e "7z a file.7z carpeta/         # 7z    -> supports folders\n7z a -tzip file.zip carpeta/  # zip   -> supports folders\n7z a -tgzip file.gz archivo   # gzip  -> single file only\n7z a -tbzip2 file.bz2 archivo # bzip2 -> single file only\n7z a -ttar file.tar carpeta/  # tar   -> supports folders\n7z a -twim file.wim carpeta/  # wim   -> supports folders"
         while (( number > 0 )); do
-            read -p "[?] Extension to compress the file: " exten
             read -p "[?] Name to compress the file: " filecomp
+            read -p "[?] Extension to compress the file: " exten
             if [[ "$exten" == "7z" ]]; then
-                7z a $filecomp.7z $filename
+                7z a $filecomp.7z $filename &>/dev/null
+                echo -e "[+] File compressed: $filename"
+                
             else
-                7z a -t$exten $filecomp.$exten $filename
+                7z a -t$exten $filecomp.$exten $filename  &>/dev/null
+                echo -e "[+] File compressed: $filename"
             fi
+            filename=$filecomp.$exten
             ((number--))
         done
 
